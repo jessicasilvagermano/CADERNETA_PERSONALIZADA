@@ -1,0 +1,510 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Cabeçalho com vídeo responsivo */
+header {
+    position: relative;
+    width: 100%;
+    height: 56.25vw; /* Mantém a proporção 16:9 (altura baseada na largura) */
+    max-height: 90vh; /* Limita a altura máxima */
+    overflow: hidden;
+}
+
+/* Container do vídeo */
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Ajuste do iframe para cobrir todo o cabeçalho */
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Seção de categorias */
+.category {
+    text-align: center;
+    margin: 0px 0;
+}
+
+.category h1 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.category button {
+    background: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.category button:hover {
+    background: #0056b3;
+}
+
+#btnLuxo{
+    background: #7ecf6b;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Lista de Produtos */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header {
+        height: 50vw; /* Ajusta melhor para telas pequenas */
+    }
+
+    .category h1 {
+        font-size: 18px;
+    }
+
+    .category button {
+        width: 90%;
+        font-size: 14px;
+    }
+}
+
+/* Estilização da lista de produtos */
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  
+}
+
+/* Estilização de cada produto */
+.product {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito hover para destacar */
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajuste da imagem do produto */
+.product img {
+    
+    height: 60%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Nome do produto */
+.product h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+/* Descrição do produto */
+.product p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Preço destacado */
+.product p strong {
+    font-size: 16px;
+    color: #007bff;
+}
+
+/* Botão de seleção */
+.product button {
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* Efeito hover no botão */
+.product button:hover {
+    background: #0056b3;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .product-list {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .product img {
+        height: 150px;
+    }
+}
+/* Estilos específicos para a página de cadastro */
+#address-form {
+    max-width: 450px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Título do formulário */
+#address-form h1 {
+    text-align: center;
+    font-size: 22px;
+    padding-top: 20px;
+}
+
+/* Estilização dos labels */
+#address-form label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+/* Campos de entrada */
+#address-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+/* Efeito ao focar */
+#address-form input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Mensagens de erro */
+.error{
+    color:brown;
+}
+
+.container h1 {
+    text-align: center;
+    font-size: 22px;
+    padding-top: 20px;
+    margin: 10px 20px;
+   
+}
+
+/* Botão de confirmação */
+#address-form button {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 15px;
+}
+
+/* Efeito hover no botão */
+#address-form button:hover {
+    background: #0056b3;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #address-form {
+        width: 90%;
+    }
+}
+
+/* Centraliza o conteúdo da página */
+.container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 50px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Título */
+.container h1 {
+   
+    font-size: 22px;
+    margin-bottom: 20px;
+    
+    
+}
+
+/* Estilização do bloco de resumo */
+
+
+.resumo-pedido {
+    
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #f9f9f9;
+ 
+    
+   
+}
+/* Ajuste para imagens do produto */
+.resumo-pedido img {
+    
+   object-fit: cover;
+   border-radius: 10px;
+   padding: 25px;
+   max-height: 500px;
+    
+   
+   
+}
+
+/* Texto dentro do resumo */
+.resumo-pedido p {
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+    margin: 20px 30px;
+   
+}
+.resumo-pedido h2 {
+    
+    text-align: left;
+    margin: 60px 30px ;
+   
+}
+
+/* Botões de ação */
+.botoes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn-confirmar, .btn-desistir {
+    flex: 1;
+    padding: 30px;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 5px;
+}
+
+/* Botão confirmar */
+.btn-confirmar {
+    background: #28a745;
+    color: white;
+}
+
+.btn-confirmar:hover {
+    background: #218838;
+}
+
+/* Botão desistir */
+.btn-desistir {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-desistir:hover {
+    background: #c82333;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    .botoes {
+        flex-direction: column;
+    }
+
+    .btn-confirmar, .btn-desistir {
+        width: 100%;
+    }
+}
+
+/* Estilização do container de categorias */
+#categoria {
+    text-align: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Estilo do título */
+#categoria h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Botões das categorias lado a lado */
+#categoria button {
+    display: inline-block;
+    width: 140px;
+    background: #ff69b4; /* Rosa para Meninas */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin: 5px; /* Reduzi a distância entre os botões */
+}
+
+/* Azul para Meninos */
+#categoria button:last-child {
+    background: #1e90ff;
+}
+
+/* Efeito hover */
+#categoria button:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+/* Alteração de cor quando clicado */
+#categoria button.ativo {
+    background: #28a745 !important; /* Verde para indicar seleção */
+}
+
+/* Ajuste para melhor espaçamento entre os botões de cima */
+#btnBasica, #btnLuxo {
+    margin-bottom: 10px; /* Reduz a distância entre os botões acima */
+}
+
+/* Estilização dos produtos */
+#products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.product {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 150px;
+}
+
+.product img {
+    width: 70%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #categoria button {
+        width: 100%;
+        font-size: 14px;
+    }
+    .product {
+        width: 100%;
+    }
+}
+
+.notification {
+    position:relative;
+    bottom: 20px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 1000; /* Garante que a notificação fique acima de outros elementos */
+    transform: translateZ(30px); /* Inicia levemente abaixo */
+}
+
+.notification.show {
+    display: flex;
+    opacity: 1;
+    transform: translatey(0); /* Sobe suavemente quando aparece */
+}
+
+.notification img {
+    width: 90px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.notification-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.stars {
+    color: #FFD700;
+}
+
+/* Evita sobreposição da notificação com os botões */
+@media (max-width: 768px) {
+    .notification {
+        right: 10px;
+        bottom: 10px;
+        width: 90%;
+    }
+}
