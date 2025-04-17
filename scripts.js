@@ -259,7 +259,7 @@ function confirmarPedido() {
 -> *Ponto de Referência:* ${endereco.referencia}
 
 
-*Olá! Estou enviando o *resumo* do meu pedido!.`;
+*Olá! Estou enviando MEU PEDIDO! Aguardo sua confirmação.`;
 
     // Codificar a mensagem para a URL do WhatsApp
     const mensagemEncoded = encodeURIComponent(mensagem);
