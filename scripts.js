@@ -35,7 +35,7 @@ function showProducts(tipo, categoria) {
             nome: "Caderneta de Luxo",
             preco: "R$ 40,00",
             descricao: `MODELO DE CAPA - ${i + 1}`,
-            imagem: `${categoria}/CAPA-${i + 1}.png`
+            imagem: `${categoria}/CAPA-${i + 1}.webp`
         }))
     };
 
