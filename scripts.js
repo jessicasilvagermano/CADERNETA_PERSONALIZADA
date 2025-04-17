@@ -29,13 +29,13 @@ function showProducts(tipo, categoria) {
             nome: "Caderneta Básica",
             preco: "R$ 35,00",
             descricao: `MODELO DE CAPA - ${i + 1}`,
-            imagem: `/${categoria}/CAPA-${i + 1}.png`
+            imagem: `${categoria}/CAPA-${i + 1}.png`
         })),
         luxo: Array.from({ length: 72 }, (_, i) => ({
             nome: "Caderneta de Luxo",
             preco: "R$ 40,00",
             descricao: `MODELO DE CAPA - ${i + 1}`,
-            imagem: `/${categoria}/CAPA-${i + 1}.png`
+            imagem: `${categoria}/CAPA-${i + 1}.png`
         }))
     };
 
@@ -147,7 +147,7 @@ function exibirResumoPedido() {
             <p><strong>Preço:</strong> ${produto.preco}</p>
             <p><strong>Frete:</strong> ${endereco.frete || "Não calculado"}</p>
 
-            
+
             <h2>Endereço para Entrega:</h2>
             <p><strong>CEP:</strong> ${endereco.cep}</p>
             <p><strong>Rua:</strong> ${endereco.rua}</p>
