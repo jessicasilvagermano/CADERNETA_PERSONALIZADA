@@ -60,7 +60,10 @@ function showProducts(tipo, categoria) {
 }
 
 function buscarEndereco() {
+    
     const cep = document.getElementById("cep").value.replace(/\D/g, "");
+    
+
     if (cep.length !== 8) {
         alert("CEP inválido! Digite um CEP com 8 dígitos.");
         return;
@@ -77,6 +80,7 @@ function buscarEndereco() {
             }
             document.getElementById("rua").value = data.logradouro;
             document.getElementById("bairro").value = data.bairro;
+            document.getElementById("cidade").value = data.localidade;
         })
         .catch(error => console.error("Erro ao buscar CEP:", error));
 }
@@ -125,12 +129,15 @@ function showNotification() {
     
     setTimeout(() => {
         notification.classList.remove('show');
-    }, 3000);
+    }, 4000);
     
     index = (index + 1) % testimonials.length;
 }
 
-setInterval(showNotification, 4000);
+setInterval(showNotification, 5000);
+
+
+
 
 function exibirResumoPedido() {
     const produto = JSON.parse(localStorage.getItem("produtoSelecionado"));
@@ -153,6 +160,7 @@ function exibirResumoPedido() {
             <p><strong>Rua:</strong> ${endereco.rua}</p>
             <p><strong>Número:</strong> ${endereco.numero}</p>
             <p><strong>Bairro:</strong> ${endereco.bairro}</p>
+            <p><strong>Cidade:</strong> ${endereco.cidade}</p>
             <p><strong>Ponto de Referência:</strong> ${endereco.referencia}</p>
             <p><strong>Cliente (Seu Nome aqui):</strong> ${endereco.nome}</p>
             <p><strong>Previsão de Entrega:</strong> ${dataEntrega}</p>
@@ -205,13 +213,17 @@ function salvarEndereco() {
     const referencia = document.getElementById("referencia").value.trim();
     const nome = document.getElementById("nome").value.trim();
     const crianca = document.getElementById("crianca").value.trim();
+    const cidade = document.getElementById("cidade").value.trim();
+
+   
+
 
     if (!cep || cep.length !== 8 || isNaN(cep)) {
         alert("CEP inválido! Digite um CEP com 8 dígitos.");
         return;
     }
 
-    if (!rua || !bairro || !referencia || !numero || !nome || !frete || !crianca) {
+    if (!rua || !bairro || !referencia || !numero || !nome || !frete || !crianca || !cidade) {
         alert("Preencha todos os campos corretamente.");
         return;
     }
@@ -220,11 +232,18 @@ function salvarEndereco() {
     
     setTimeout(() => {
         const frete = document.getElementById("frete").innerText.replace("Frete: ", "").trim();
-        const endereco = { cep, rua, bairro, referencia, numero, nome, frete, crianca };
+        const endereco = { cep, rua, bairro, referencia, numero, nome, frete, crianca, cidade };
         localStorage.setItem("endereco", JSON.stringify(endereco));
         window.location.href = "resumo.html";
     }, 500);
 }
+
+
+
+
+
+
+
 
 function confirmarPedido() {
     const produto = JSON.parse(localStorage.getItem("produtoSelecionado"));
@@ -256,6 +275,7 @@ function confirmarPedido() {
 -> *CEP:* ${endereco.cep}
 -> *Rua:* ${endereco.rua}, Nº ${endereco.numero}
 -> *Bairro:* ${endereco.bairro}
+-> *Cidade:* ${endereco.cidade}
 -> *Ponto de Referência:* ${endereco.referencia}
 
 

@@ -15,7 +15,7 @@
             <p id="frete"></p>
 
             <label for="cep">CEP:</label>
-            <input type="text" id="cep" placeholder="Digite o CEP" maxlength="8" onblur="buscarEndereco()">
+            <input type="text" id="cep" placeholder="Digite Somente Números" maxlength="8" onblur="buscarEndereco()">
             <span class="error" id="cep-error"></span>
 
             
@@ -30,6 +30,10 @@
             <label for="bairro">Nome do Bairro:</label>
             <input type="text" id="bairro" required>
             <span class="error" id="bairro-error"></span>
+
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" name="cidade" readonly>
+
 
             <label for="referencia">Ponto de Referência:</label>
             <input type="text" id="referencia" required>

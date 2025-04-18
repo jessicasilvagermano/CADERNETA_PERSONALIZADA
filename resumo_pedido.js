@@ -1,4 +1,4 @@
-const products = {
+/* const products = {
     basica: [
         { name: 'Caderneta Básica A', price: 10.00 },
         { name: 'Caderneta Básica B', price: 12.50 }
@@ -7,7 +7,7 @@ const products = {
         { name: 'Caderneta de Luxo A', price: 25.00 },
         { name: 'Caderneta de Luxo B', price: 30.00 }
     ]
-};
+}; */
 
 // Função para exibir produtos por categoria
 function selectCategory(category) {
