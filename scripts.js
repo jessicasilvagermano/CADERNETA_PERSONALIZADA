@@ -265,7 +265,7 @@ function confirmarPedido() {
     
     
 -> *Cliente:* ${endereco.nome}
--> *Capa escolhida:* ${produto.descricao} -> *Códido da capa:* ${produto.imagem }
+-> *Capa escolhida:* ${produto.descricao}
 -> *Nome da Criança:* ${endereco.crianca}
 -> *Preço:* ${produto.preco}
 -> *Frete:* ${endereco.frete || "Não calculado"}
