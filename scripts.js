@@ -92,26 +92,26 @@ function selecionarProduto(nome, preco, descricao, imagem) {
 }
 
 const testimonials = [
-    { name: "Aninha -Juá", text: "Entrega rápida e só paga quando recebe. Amei a minha  ", photo: "testemonials/a.jpg" },
-    { name: "Carlos Massangano", text: "Super perfeita, eu amei 😍", photo: "testemonials/b.jpg" },
-    { name: "Mariana st Antônio", text: "Atendimento excelente, vale muito a pena! Facil de comprar e só paga na entrega", photo: "testemonials/c.jpg" },
-    { name: "jb Santos- bairro coreia", text: "Entrega rápida e vendedora sempre disponível!", photo: "testemonials/d.jpg" },
-    { name: "Nanda -malhada da areia", text: "Preço justo e de qualidade !", photo: "testemonials/e.jpg" },
-    { name: "Jonas- petrolina", text: "Chegou perfeita 😍", photo: "testemonials/f.jpg" },
-    { name: "Zé Mª- Alto da maravilha", text: "Amei. Veio com o nome do meu bebê e igual fiz o pedido", photo: "testemonials/g.jpg" },
-    { name: "Luana- centro", text: "Fácil e seguro de comprar. Gostei demais", photo: "testemonials/h.jpg" },
-    { name: "Rúbia", text: "maravilhosoooo .Por ser personalizada eu achava que ia demorar muito, mais foi rápido.Amei", photo: "testemonials/i.jpg" },
-    { name: "crislaine", text: "Entrega rápida e de qualidade e personalizada, amei", photo: "testemonials/j.jpg" },
-    { name: "Pyetra", text: "Muito bom, achei a loja pelo instagram!", photo: "testemonials/k.jpg" },
-    { name: "Alice", text: "É só fazer o pedido e aguardar chegar. Adorei! Caderneta linda", photo: "testemonials/l.jpg" },
-    { name: "Glaucia- ", text: "Foi presente, minha tia adorou", photo: "testemonials/m.jpg" },
-    { name: "Cleber", text: "Amei a entrega é muito rápida", photo: "testemonials/n.jpg" },
-    { name: "Patricia", text: "Gostei demais, agora é só esperar meu bebe chegar", photo: "testemonials/o.jpg" },
-    { name: "Lucinha", text: "ADOREI,AMEI", photo: "testemonials/p.jpg" },
-    { name: "João Lucas", text: "Adorei a compra e já indiquei", photo: "testemonials/q.jpg" },
-    { name: "VERA", text: "Entrega rápida e caderneta personalizada, muito bom", photo: "testemonials/r.jpg" },
-    { name: "Claudia", text: "Gostei de tudo. Achei facil de comprar", photo: "testemonials/s.jpg" },
-    { name: "Lana", text: "é linda minha cadernetinha", photo: "testemonials/t.jpg" }
+    { name: "Aninha -Juá", text: "Entrega rápida e só paga quando recebe. Amei a minha  ", photo: "testemonials/a.webp" },
+    { name: "Carlos Massangano", text: "Super perfeita, eu amei 😍", photo: "testemonials/b.webp" },
+    { name: "Mariana st Antônio", text: "Atendimento excelente, vale muito a pena! Facil de comprar e só paga na entrega", photo: "testemonials/c.webp" },
+    { name: "jb Santos- bairro coreia", text: "Entrega rápida e vendedora sempre disponível!", photo: "testemonials/d.webp" },
+    { name: "Nanda -malhada da areia", text: "Preço justo e de qualidade !", photo: "testemonials/e.webp" },
+    { name: "Jonas- petrolina", text: "Chegou perfeita 😍", photo: "testemonials/f.webp" },
+    { name: "Zé Mª- Alto da maravilha", text: "Amei. Veio com o nome do meu bebê e igual fiz o pedido", photo: "testemonials/g.webp" },
+    { name: "Luana- centro", text: "Fácil e seguro de comprar. Gostei demais", photo: "testemonials/h.webp" },
+    { name: "Rúbia", text: "maravilhosoooo .Por ser personalizada eu achava que ia demorar muito, mais foi rápido.Amei", photo: "testemonials/i.webp" },
+    { name: "crislaine", text: "Entrega rápida e de qualidade e personalizada, amei", photo: "testemonials/j.webp" },
+    { name: "Pyetra", text: "Muito bom, achei a loja pelo instagram!", photo: "testemonials/k.webp" },
+    { name: "Alice", text: "É só fazer o pedido e aguardar chegar. Adorei! Caderneta linda", photo: "testemonials/l.webp" },
+    { name: "Glaucia- ", text: "Foi presente, minha tia adorou", photo: "testemonials/m.webp" },
+    { name: "Cleber", text: "Amei a entrega é muito rápida", photo: "testemonials/n.webp" },
+    { name: "Patricia", text: "Gostei demais, agora é só esperar meu bebe chegar", photo: "testemonials/o.webp" },
+    { name: "Lucinha", text: "ADOREI,AMEI", photo: "testemonials/p.webp" },
+    { name: "João Lucas", text: "Adorei a compra e já indiquei", photo: "testemonials/q.webp" },
+    { name: "VERA", text: "Entrega rápida e caderneta personalizada, muito bom", photo: "testemonials/r.webp" },
+    { name: "Claudia", text: "Gostei de tudo. Achei facil de comprar", photo: "testemonials/s.webp" },
+    { name: "Lana", text: "é linda minha cadernetinha", photo: "testemonials/t.webp" }
 ]
 
 let index = 0;
@@ -148,22 +148,22 @@ function exibirResumoPedido() {
 
         document.getElementById("pedido").innerHTML = 
             `<img src="${produto.imagem}" alt="${produto.nome}">
+            <p><strong>Cliente (Seu Nome aqui):</strong> ${endereco.nome}</p>
             <p><strong>Produto:</strong> ${produto.nome}</p>
             <p><strong>Descrição:</strong> ${produto.descricao}</p>
-            <p><strong>Nome p/ personalizar:</strong> ${endereco.crianca}</p>
+            <p><strong>Nome para personalizar:</strong> ${endereco.crianca}</p>
             <p><strong>Preço:</strong> ${produto.preco}</p>
             <p><strong>Frete:</strong> ${endereco.frete || "Não calculado"}</p>
+            <p><strong>Previsão de Entrega:</strong> ${dataEntrega}</p>
 
 
             <h2>Endereço para Entrega:</h2>
             <p><strong>CEP:</strong> ${endereco.cep}</p>
             <p><strong>Rua:</strong> ${endereco.rua}</p>
-            <p><strong>Número:</strong> ${endereco.numero}</p>
+            <p><strong>Número da casa:</strong> ${endereco.numero}</p>
             <p><strong>Bairro:</strong> ${endereco.bairro}</p>
             <p><strong>Cidade:</strong> ${endereco.cidade}</p>
             <p><strong>Ponto de Referência:</strong> ${endereco.referencia}</p>
-            <p><strong>Cliente (Seu Nome aqui):</strong> ${endereco.nome}</p>
-            <p><strong>Previsão de Entrega:</strong> ${dataEntrega}</p>
         `;
     }
 }
@@ -248,6 +248,7 @@ function salvarEndereco() {
 function confirmarPedido() {
     const produto = JSON.parse(localStorage.getItem("produtoSelecionado"));
     const endereco = JSON.parse(localStorage.getItem("endereco"));
+    const dataEntrega = calcularDataEntrega();  // agora calcula dias úteis!
 
     if (!produto || !endereco) {
         alert("Erro: Não foi possível recuperar os dados do pedido.");
@@ -260,18 +261,21 @@ function confirmarPedido() {
     // Montar a mensagem para o WhatsApp
     const mensagem = 
     `*Resumo do Pedido* - ${produto.nome}
-
+    
+    
+    
+-> *Cliente:* ${endereco.nome}
+-> *Capa escolhida:* ${produto.descricao} -> *Códido da capa:* ${produto.imagem }
 -> *Nome da Criança:* ${endereco.crianca}
 -> *Preço:* ${produto.preco}
 -> *Frete:* ${endereco.frete || "Não calculado"}
+-> *Previsão de entrega:* ${dataEntrega}
 
--> *Capa Escolhida:* ${produto.imagem }
 
 ---------------------------------------------------------------
 
   *Endereço de Entrega:*
 
--> *Cliente:* ${endereco.nome}
 -> *CEP:* ${endereco.cep}
 -> *Rua:* ${endereco.rua}, Nº ${endereco.numero}
 -> *Bairro:* ${endereco.bairro}
