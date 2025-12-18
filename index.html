@@ -3,46 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAÇA O PEDIDO AQUI - 
-    CADERNETAS DE VACINAS PERSONALIZADAS</title>  
+    <title>FAÇA O PEDIDO AQUI - CADERNETAS DE VACINAS PERSONALIZADAS</title>  
+
+    <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- JS -->
     <script src="scripts.js" defer></script>
-   
 </head>
 <body>
-    <header>
-        <div class="video-container">
-            <iframe 
-                src="https://www.youtube.com/embed/8NYVy6OAlHs?si=-aFmugZzSwJvB3wg" 
-                title="CADERNETA DE VACINAS E SAÚDE COMPLETA" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen>
-            </iframe>
+    <!-- Cabeçalho com Carrossel -->
+    <header class="header-carousel">
+    <div class="carousel">
+        <div class="slides">
+            <img src="/cadernetaBasica/1.png" alt="Banner 1">
+            <img src="/cadernetaBasica/2.png" alt="Banner 1">
+            <img src="/cadernetaBasica/3.png" alt="Banner 1">
+            <img src="/cadernetaBasica/4.png" alt="Banner 1">
+            <img src="/cadernetaBasica/5.png" alt="Banner 1">
+            <img src="/cadernetaBasica/6.png" alt="Banner 1">
+            <img src="/cadernetaBasica/7.png" alt="Banner 1">
+            <img src="/cadernetaBasica/8.png" alt="Banner 1">
+            <img src="/cadernetaBasica/9.png" alt="Banner 1">
+            <img src="/cadernetaBasica/10.png" alt="Banner 1">
+            <img src="/cadernetaLuxo/7.png" alt="Banner 2">
+            <img src="/cadernetaLuxo/8.png" alt="Banner 2">
+            <img src="/cadernetaLuxo/9.png" alt="Banner 2">
+            <img src="/cadernetaLuxo/10.png" alt="Banner 2">
+            <img src="/cadernetaLuxo/11.png" alt="Banner 2">
+            <img src="/cadernetaLuxo/12.png" alt="Banner 2">
+            <img src="/cadernetaLuxo/13.png" alt="Banner 2">
+            <img src="/cadernetaLuxo/14.png" alt="Banner 2">
+            <img src="/cadernetaLuxo/15.png" alt="Banner 2">
+            <img src="/cadernetaLuxo/16.png" alt="Banner 2">
+            
         </div>
-    </header>
+
+        <button class="prev">❮</button>
+        <button class="next">❯</button>
+    </div>
+</header>
+
 
     <!-- Seleção de Categorias -->
-    <section class="category">
-        <h1>Clique e veja os modelos disponíveis</h1>
-        <button id="btnBasica">📘 Caderneta Básica</button>
-        <button id="btnLuxo">✨ Caderneta de Luxo</button>
-    </section>
+    <main>
+        <section class="category">
+            <h1>Clique e veja os modelos disponíveis</h1>
+            <button id="btnBasica">📘 Caderneta Básica</button>
+            <button id="btnLuxo">✨ Caderneta de Luxo</button>
+        </section>
 
-    <!-- Lista de Produtos -->
-    <section id="products" class="product-list"></section>
+        <!-- Lista de Produtos -->
+        <section id="products" class="product-list"></section>
+    </main>
 
     <!-- Notificação de Prova Social -->
-    <div id="notification" class="notification">
-        <img id="client-photo" src="" alt="Foto do Cliente">
-        <div class="notification-content">
-            <strong id="client-name"></strong>
-            <span id="testimonial-text"></span>
-            <div class="stars">★★★★★</div>
+    <aside>
+        <div id="notification" class="notification" aria-live="polite">
+            <img id="client-photo" src="" alt="Foto do Cliente">
+            <div class="notification-content">
+                <strong id="client-name"></strong>
+                <span id="testimonial-text"></span>
+                <div class="stars">★★★★★</div>
+            </div>
         </div>
-    </div>
-
- 
+    </aside>
 </body>
 </html>
