@@ -1,31 +1,40 @@
+/* ================= RESET SEGURO ================= */
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    margin: 0;
     font-family: Arial, sans-serif;
 }
 
-/* ================= HEADER / CARROSSEL ================= */
-.header-carousel {
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* =================================================
+   HOME – CARROSSEL (ISOLADO)
+================================================= */
+.page-home .header-carousel {
     width: 100%;
     height: 400px;
     overflow: hidden;
 }
 
-.carousel {
+.page-home .carousel {
     position: relative;
     width: 100%;
     height: 100%;
-    overflow: hidden;
 }
 
-.slides {
+.page-home .slides {
     display: flex;
     height: 100%;
     transition: transform 0.5s ease-in-out;
 }
 
-.slides img {
+.page-home .slides img {
     width: 100%;
     height: 100%;
     flex-shrink: 0;
@@ -33,8 +42,8 @@
 }
 
 /* Botões do carrossel */
-.prev,
-.next {
+.page-home .prev,
+.page-home .next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -48,26 +57,28 @@
     z-index: 10;
 }
 
-.prev { left: 15px; }
-.next { right: 15px; }
+.page-home .prev { left: 15px; }
+.page-home .next { right: 15px; }
 
-.prev:hover,
-.next:hover {
+.page-home .prev:hover,
+.page-home .next:hover {
     background: rgba(0,0,0,0.8);
 }
 
-/* ================= CATEGORIAS ================= */
-.category {
+/* =================================================
+   HOME – CATEGORIAS
+================================================= */
+.page-home .category {
     text-align: center;
     margin: 30px 0;
 }
 
-.category h1 {
+.page-home .category h1 {
     font-size: 22px;
     margin-bottom: 15px;
 }
 
-.category button {
+.page-home .category button {
     background: #007bff;
     color: white;
     padding: 12px 20px;
@@ -79,15 +90,17 @@
     transition: 0.3s;
 }
 
-.category button:hover {
+.page-home .category button:hover {
     background: #0056b3;
 }
 
-#btnLuxo {
+.page-home #btnLuxo {
     background: #7ecf6b;
 }
 
-/* ================= LISTA DE PRODUTOS ================= */
+/* =================================================
+   PRODUTOS (USADO EM TODAS AS PÁGINAS)
+================================================= */
 .product-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -145,17 +158,19 @@
     background: #0056b3;
 }
 
-/* ================= RESPONSIVO ================= */
+/* =================================================
+   RESPONSIVO
+================================================= */
 @media (max-width: 768px) {
-    .header-carousel {
+    .page-home .header-carousel {
         height: 250px;
     }
 
-    .category h1 {
+    .page-home .category h1 {
         font-size: 18px;
     }
 
-    .category button {
+    .page-home .category button {
         width: 90%;
     }
 
