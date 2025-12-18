@@ -178,3 +178,94 @@ img {
         height: 150px;
     }
 }
+
+/* =================================================
+   PÁGINAS INTERNAS (FORMULÁRIOS)
+================================================= */
+.page-interna {
+    background: #f5f6fa;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container central */
+.page-interna .container {
+    max-width: 500px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+/* Título */
+.page-interna h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #333;
+}
+
+/* Formulário */
+.page-interna form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+.page-interna label {
+    font-size: 14px;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    color: #555;
+}
+
+/* Inputs */
+.page-interna input {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    transition: border 0.3s;
+}
+
+.page-interna input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Campo readonly */
+.page-interna input[readonly] {
+    background: #f0f0f0;
+}
+
+/* Botão */
+.page-interna button {
+    margin-top: 20px;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.page-interna button:hover {
+    background: #0056b3;
+}
+
+/* Erros */
+.page-interna .error {
+    font-size: 12px;
+    color: #d9534f;
+}
+
+/* Frete */
+.page-interna #frete {
+    text-align: center;
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 10px;
+}
