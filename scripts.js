@@ -5,15 +5,35 @@ const TOTAL_CAPAS = 72;
 const PRECO_CARTAO_SUS = 10.00;
 const PRECO_CARTAO_SUS_PROMO = 5.00;
 
-const FRETES_POR_BAIRRO = {
-    "Padre Vicente": 0,
-    "Centro": 5,
-    "Piranga": 5,
-    "Dom José Rodrigues": 5,
-    "Argemiro": 2,
-    "Nova esperança": 2,
-    "Piranga 1": 2
-};
+const FRETES_POR_BAIRRO = 
+
+{
+  "Padre Vicente": 0,
+  "Centro": 3,
+  "Piranga": 0,
+  "Dom José Rodrigues": 3,
+  "Argemiro": 0,
+  "Nova esperança": 0,
+  "Piranga 1": 0,
+  "Santo Antônio": 0,
+  "Maringá": 0,
+  "Nossa Senhora da Penha": 3,
+  "Expedito de Almeida Nascimento": 5 ,
+  "Pedra do Lord": 0,
+  "Country Club": 3,
+  "Jardim Vitória": 0,
+  "Quidé": 3,
+  "Nossa Senhora das Grotas": 2 ,
+  "Jardim Flórida": 0,
+  "João XXIII": 3  ,
+  "Antonio Conselheiro": 3,
+  "Malhada da Areia": 5,
+  "Alto da Aliança": 5,
+  "Vila Tiradentes": 5,
+  "Antonio Guilhermino": 5,
+  "João Paulo II": 8
+}
+
 
 /* ================= INICIAL ================= */
 
