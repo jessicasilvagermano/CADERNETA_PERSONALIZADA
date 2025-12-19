@@ -1,38 +1,69 @@
- /* ================= CONFIG ================= */
+/* ================= CONFIG ================= */
 
 const TOTAL_CAPAS = 72;
 
 const PRECO_CARTAO_SUS = 10.00;
 const PRECO_CARTAO_SUS_PROMO = 5.00;
 
-const FRETES_POR_BAIRRO = 
+const FRETES_POR_BAIRRO =
 
 {
-  "Padre Vicente": 0,
-  "Centro": 3,
-  "Piranga": 0,
-  "Dom José Rodrigues": 3,
-  "Argemiro": 0,
-  "Nova esperança": 0,
-  "Piranga 1": 0,
-  "Santo Antônio": 0,
-  "Maringá": 0,
-  "Nossa Senhora da Penha": 3,
-  "Expedito de Almeida Nascimento": 5 ,
-  "Pedra do Lord": 0,
-  "Country Club": 3,
-  "Jardim Vitória": 0,
-  "Quidé": 3,
-  "Nossa Senhora das Grotas": 2 ,
-  "Jardim Flórida": 0,
-  "João XXIII": 3  ,
-  "Antonio Conselheiro": 3,
-  "Malhada da Areia": 5,
-  "Alto da Aliança": 5,
-  "Vila Tiradentes": 5,
-  "Antonio Guilhermino": 5,
-  "João Paulo II": 8
+    "Alto da Aliança": 5,
+    "Antonio Conselheiro": 3,
+    "Antonio Guilhermino": 5,
+    "Argemiro": 0,
+    "Água Bela": 3,
+    "Alagadiço": 0,
+    "Alto da Maravilha": 0,
+    "Alto do Alencar":4,
+    "Alto do Cruzeiro": 3,
+    "Angary": 3,
+    "Centro": 3,
+    "Country Club": 3,
+    "Cajueiro": 3,
+    "Castelo Branco": 3,
+    "Centenário": 3,
+    "Coréia": 3,
+    "Distrito Industrial": 10,
+    "Dom José Rodrigues": 5,
+    "Dom Tomaz": 5,
+    "Expedito de Almeida Nascimento": 3,
+    " Itaberaba": 5,
+    "Jardim Flórida": 0,
+    "Jardim Novo Encontro": 3,
+    "Jardim São Paulo": 5,
+    "Jardim Vitória": 0,
+    "João Paulo II": 8,
+    "João XXIII": 3,
+    "Lomanto Júnior": 3,
+    "Malhada da Areia": 5,
+    "Maringá": 0,
+    "Matatu": 2,
+    "Monte Castelo": 3,
+    "Mussambê": 2,
+    "Nossa Senhora da Penha": 3,
+    "Nossa Senhora das Grotas": 2,
+    "Nova esperança": 0,
+    "Padre Vicente": 0,
+    "Palmares": 3,
+    "Parque Centenário": 3,
+    "Pedra do Lord": 0,
+    "Pedro Raimundo": 4,
+    "Piranga": 0,
+    "Piranga I": 0,
+    "Piranga II": 3,
+    "Quidé": 3,
+    "Santa Maria Goretti": 0,
+    "Santo Antônio": 0,
+    "São Geraldo": 3,
+    "Tabuleiro": 3,
+    "Tancredo Neves": 3,
+    "Vila Tiradentes": 5,
+    "Gercino Coelho": 5,
+    "Vila Mocó": 5,
+    "São José": 5
 }
+
 
 
 /* ================= INICIAL ================= */
@@ -244,8 +275,7 @@ function exibirResumoPedido() {
             <p>R$ ${precoProduto.toFixed(2)}</p>
         </div>
 
-        ${
-            cartaoSus?.incluso
+        ${cartaoSus?.incluso
             ? `
             <div class="pedido-item">
               <img src="${cartaoSus.imagem}"> 
@@ -266,7 +296,8 @@ function exibirResumoPedido() {
 
     <div class="pedido-endereco">
         <h3>📍 Endereço</h3>
-        <p>${endereco.nome}</p>
+        <p>Cliente: ${endereco.nome}</p>
+        <p>Nome da Criança: ${endereco.crianca}</p>
         <p>${endereco.rua}, ${endereco.numero}</p>
         <p>${endereco.bairro} – ${endereco.cidade}</p>
         <p>📅 Entrega: ${endereco.dataEntrega}</p>
@@ -299,12 +330,25 @@ function confirmarPedido() {
 📘 ${produto.nome}
 🖼️ ${produto.descricao}
 ${cartaoSus?.incluso ? "🪪 Cartão do SUS incluso" : ""}
+👤 Nome da Criança :${endereco.crianca}
 
-🚚 Frete: R$ ${frete.toFixed(2)}
-💰 *TOTAL:* R$ ${total.toFixed(2)}
+   *ENDEREÇO DA ENTREGA*
 
-👤 ${endereco.nome}
-📍 ${endereco.rua}, ${endereco.numero}
+👤Cliente:${endereco.nome}
+📍 Endereço: ${endereco.rua}, ${endereco.numero},
+📍 Bairro: ${endereco.bairro}, 
+📍 Ponto de Referência:${endereco.referencia},
+📍 CEP: ${endereco.cep}
+
+💰 *TOTAL Á PAGAR:* R$ ${total.toFixed(2)}
+
+Seu pedido poderá ser pago no *PIX,
+CARTÃO DE CRÉDITO - dividido em até 2x,
+Dinheiro(Deve estar trocado no valor total do pedido)*
+
+
+*Envie para o Cartão SUS* : NOME COMPLETO, DATA DE NASCIMENTO, NÚMERO DO CARTÃO
+
     `.trim();
 
     window.open(
@@ -343,107 +387,107 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!notification || !clientPhoto) return;
 
     const notifications = [
-        
-  {
-    name: "Carlos A. Silva",
-    text: "Minha esposa adorou o presente, ficou perfeito",
-    photo: "testemonials/a.webp"
-  },
-  {
-    name: "Fernanda M. Rocha",
-    text: "Qualidade excelente, chegou rapidinho",
-    photo: "testemonials/b.webp"
-  },
-  {
-    name: "Kelly P. Andrade",
-    text: "Fiquei muito satisfeita com o resultado",
-    photo: "testemonials/c.webp"
-  },
-  {
-    name: "Fernanda Pacheco",
-    text: "Produto lindo, superou minhas expectativas",
-    photo: "testemonials/d.webp"
-  },
-  {
-    name: "Mariana S. Costa",
-    text: "Amei cada detalhe, recomendo demais",
-    photo: "testemonials/e.webp"
-  },
-  {
-    name: "Juliana Nogueira",
-    text: "Muito bem feito, dá pra ver o capricho",
-    photo: "testemonials/f.webp"
-  },
-  {
-    name: "Renata Oliveira",
-    text: "Com certeza comprarei novamente",
-    photo: "testemonials/g.webp"
-  },
-  {
-    name: "Patrícia Lima",
-    text: "Chegou antes do prazo e é maravilhoso",
-    photo: "testemonials/h.webp"
-  },
-  {
-    name: "Camila Ferreira",
-    text: "Simplesmente perfeito, amei",
-    photo: "testemonials/i.webp"
-  },
-  {
-    name: "Vanessa Albuquerque",
-    text: "Ótimo acabamento e material de qualidade",
-    photo: "testemonials/j.webp"
-  },
-  {
-    name: "Aline Barbosa",
-    text: "Atendimento excelente e produto impecável",
-    photo: "testemonials/k.webp"
-  },
-  {
-    name: "Bruna Monteiro",
-    text: "Vale muito a pena, fiquei encantada",
-    photo: "testemonials/l.webp"
-  },
-  {
-    name: "Tatiane R. Lopes",
-    text: "Presente perfeito, quem recebeu amou",
-    photo: "testemonials/m.webp"
-  },
-  {
-    name: "Daniela Farias",
-    text: "Trabalho muito bem feito, recomendo",
-    photo: "testemonials/n.webp"
-  },
-  {
-    name: "Luciana Menezes",
-    text: "Lindo demais, já quero outro",
-    photo: "testemonials/o.webp"
-  },
-  {
-    name: "Roberta Guedes",
-    text: "Tudo feito com muito cuidado e carinho",
-    photo: "testemonials/p.webp"
-  },
-  {
-    name: "Simone Teixeira",
-    text: "Experiência excelente do início ao fim",
-    photo: "testemonials/q.webp"
-  },
-  {
-    name: "Carolina P. Reis",
-    text: "Produto maravilhoso e atendimento rápido",
-    photo: "testemonials/r.webp"
-  },
-  {
-    name: "Érica Santos",
-    text: "Amei demais, super recomendo",
-    photo: "testemonials/s.webp"
-  },
-  {
-    name: "Paula Rodrigues",
-    text: "Muito bonito, dá pra ver o cuidado",
-    photo: "testemonials/t.webp"
-  }
+
+        {
+            name: "Carlos A. Silva",
+            text: "Minha esposa adorou o presente, ficou perfeito",
+            photo: "testemonials/a.webp"
+        },
+        {
+            name: "Fernanda M. Rocha",
+            text: "Qualidade excelente, chegou rapidinho",
+            photo: "testemonials/b.webp"
+        },
+        {
+            name: "Kelly P. Andrade",
+            text: "Fiquei muito satisfeita com o resultado",
+            photo: "testemonials/c.webp"
+        },
+        {
+            name: "Fernanda Pacheco",
+            text: "Produto lindo, superou minhas expectativas",
+            photo: "testemonials/d.webp"
+        },
+        {
+            name: "Mariana S. Costa",
+            text: "Amei cada detalhe, recomendo demais",
+            photo: "testemonials/e.webp"
+        },
+        {
+            name: "Juliana Nogueira",
+            text: "Muito bem feito, dá pra ver o capricho",
+            photo: "testemonials/f.webp"
+        },
+        {
+            name: "Renata Oliveira",
+            text: "Com certeza comprarei novamente",
+            photo: "testemonials/g.webp"
+        },
+        {
+            name: "Patrícia Lima",
+            text: "Chegou antes do prazo e é maravilhoso",
+            photo: "testemonials/h.webp"
+        },
+        {
+            name: "Camila Ferreira",
+            text: "Simplesmente perfeito, amei",
+            photo: "testemonials/i.webp"
+        },
+        {
+            name: "Vanessa Albuquerque",
+            text: "Ótimo acabamento e material de qualidade",
+            photo: "testemonials/j.webp"
+        },
+        {
+            name: "Aline Barbosa",
+            text: "Atendimento excelente e produto impecável",
+            photo: "testemonials/k.webp"
+        },
+        {
+            name: "Bruna Monteiro",
+            text: "Vale muito a pena, fiquei encantada",
+            photo: "testemonials/l.webp"
+        },
+        {
+            name: "Tatiane R. Lopes",
+            text: "Presente perfeito, quem recebeu amou",
+            photo: "testemonials/m.webp"
+        },
+        {
+            name: "Daniela Farias",
+            text: "Trabalho muito bem feito, recomendo",
+            photo: "testemonials/n.webp"
+        },
+        {
+            name: "Luciana Menezes",
+            text: "Lindo demais, já quero outro",
+            photo: "testemonials/o.webp"
+        },
+        {
+            name: "Roberta Guedes",
+            text: "Tudo feito com muito cuidado e carinho",
+            photo: "testemonials/p.webp"
+        },
+        {
+            name: "Simone Teixeira",
+            text: "Experiência excelente do início ao fim",
+            photo: "testemonials/q.webp"
+        },
+        {
+            name: "Carolina P. Reis",
+            text: "Produto maravilhoso e atendimento rápido",
+            photo: "testemonials/r.webp"
+        },
+        {
+            name: "Érica Santos",
+            text: "Amei demais, super recomendo",
+            photo: "testemonials/s.webp"
+        },
+        {
+            name: "Paula Rodrigues",
+            text: "Muito bonito, dá pra ver o cuidado",
+            photo: "testemonials/t.webp"
+        }
 
     ];
 
