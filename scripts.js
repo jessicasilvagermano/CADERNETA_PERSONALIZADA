@@ -1,291 +1,160 @@
-document.addEventListener("DOMContentLoaded", function () {
+ /* ================= CONFIG ================= */
+
+const TOTAL_CAPAS = 72;
+
+const PRECO_CARTAO_SUS = 10.00;
+const PRECO_CARTAO_SUS_PROMO = 5.00;
+
+const FRETES_POR_BAIRRO = {
+    "Padre Vicente": 0,
+    "Centro": 5,
+    "Piranga": 5,
+    "Dom José Rodrigues": 5,
+    "Argemiro": 2,
+    "Nova esperança": 2,
+    "Piranga 1": 2
+};
+
+/* ================= INICIAL ================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
     const btnBasica = document.getElementById("btnBasica");
     const btnLuxo = document.getElementById("btnLuxo");
-    const cepInput = document.getElementById("cep");
 
-    if (btnBasica && btnLuxo) {
-        btnBasica.addEventListener("click", () => escolherCategoria("basica"));
-        btnLuxo.addEventListener("click", () => escolherCategoria("luxo"));
-    }
-
-    if (cepInput) {
-        cepInput.addEventListener("blur", buscarEndereco);
-    }
+    if (btnBasica) btnBasica.onclick = () => escolherCategoria("basica");
+    if (btnLuxo) btnLuxo.onclick = () => escolherCategoria("luxo");
 
     if (document.getElementById("pedido")) {
         exibirResumoPedido();
     }
-
-    /* ===== CARROSSEL ===== */
-    const slides = document.querySelector(".slides");
-
-    if (slides) {
-        const totalSlides = slides.children.length;
-        let index = 0;
-
-        function updateSlide() {
-            slides.style.transform = `translateX(-${index * 100}%)`;
-        }
-
-        const nextBtn = document.querySelector(".next");
-        const prevBtn = document.querySelector(".prev");
-
-        if (nextBtn) {
-            nextBtn.addEventListener("click", function () {
-                index = (index + 1) % totalSlides;
-                updateSlide();
-            });
-        }
-
-        if (prevBtn) {
-            prevBtn.addEventListener("click", function () {
-                index = (index - 1 + totalSlides) % totalSlides;
-                updateSlide();
-            });
-        }
-
-        setInterval(function () {
-            index = (index + 1) % totalSlides;
-            updateSlide();
-        }, 10000);
-    }
 });
 
+/* ================= CATEGORIAS ================= */
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    const notification = document.getElementById("notification");
-    const clientName = document.getElementById("client-name");
-    const testimonialText = document.getElementById("testimonial-text");
-    const clientPhoto = document.getElementById("client-photo");
-
-    if (!notification) return;
-
-    const notifications = [
-        {
-            name: "Carlos petrolina",
-            text: "Minha esposa gostou muito",
-            photo: "https://i.pravatar.cc/100?img=12"
-        },
-        {
-            name: "Fernanda piranga",
-            text: "Amei, amei. recomendo",
-            photo: "https://i.pravatar.cc/100?img=32"
-        },
-        {
-            name: "Paula argemiro.",
-            text: "vale a pena demais",
-            photo: "https://i.pravatar.cc/100?img=45"
-        }
-    ];
-
-    let index = 0;
-
-    function showNotification() {
-        const item = notifications[index];
-
-        clientName.textContent = item.name;
-        testimonialText.textContent = item.text;
-        clientPhoto.src = item.photo;
-
-        notification.classList.add("show");
-
-        setTimeout(() => {
-            notification.classList.remove("show");
-        }, 4000);
-
-        index = (index + 1) % notifications.length;
-    }
-
-    // primeira após 3s
-    setTimeout(() => {
-        showNotification();
-        setInterval(showNotification, 8000);
-    }, 3000);
-});
-
-/* ===== FRETE FIXO POR BAIRRO ===== */
-const FRETES_POR_BAIRRO = {
-    "Padre Vicente": 0.00,
-    "Centro": 5.00,
-    "Piranga": 5.00,
-    "Dom José Rodrigues": 5.00,
-    "argemiro": 2.00,
-    "Nova esperança": 2.00,
-    "Piranga 1": 2.00
-};
-
-
-
-/* ===== CATEGORIAS ===== */
 function escolherCategoria(tipo) {
-    let categoriaContainer = document.getElementById("categoria");
 
-    if (!categoriaContainer) {
-        categoriaContainer = document.createElement("div");
-        categoriaContainer.id = "categoria";
-        document.body.appendChild(categoriaContainer);
+    let div = document.getElementById("categoria");
+
+    if (!div) {
+        div = document.createElement("div");
+        div.id = "categoria";
+        document.body.appendChild(div);
     }
 
- categoriaContainer.innerHTML = `
-    <h2>Clique e veja as capas '${tipo}' disponíveis para:</h2>
-
-    <div class="categoria-botoes">
-        <button class="btn-categoria" onclick="showProducts('${tipo}', 'meninas')">
-            Meninas
-        </button>
-
-        <button class="btn-categoria" onclick="showProducts('${tipo}', 'meninos')">
-            Meninos
-        </button>
-    </div>
-`;
+    div.innerHTML = `
+        <h2>Clique e veja as capas '${tipo}' disponíveis para:</h2>
+        <div class="categoria-botoes">
+            <button class="btn-categoria" onclick="showProducts('${tipo}','meninas')">Meninas</button>
+            <button class="btn-categoria" onclick="showProducts('${tipo}','meninos')">Meninos</button>
+        </div>
+    `;
 }
 
-/* ===== PRODUTOS ===== */
+/* ================= PRODUTOS ================= */
 function showProducts(tipo, categoria) {
-    const products = {
-        basica: Array.from({ length: 72 }, (_, i) => ({
-            nome: "Caderneta Básica",
-            preco: "R$ 35,00",
-            descricao: `MODELO DE CAPA - ${i + 1}`,
-            imagem: `${categoria}/CAPA-${i + 1}.webp`
-        })),
-        luxo: Array.from({ length: 72 }, (_, i) => ({
-            nome: "Caderneta de Luxo",
-            preco: "R$ 40,00",
-            descricao: `MODELO DE CAPA - ${i + 1}`,
-            imagem: `${categoria}/CAPA-${i + 1}.webp`
-        }))
-    };
 
-    let productList = document.getElementById("products");
+    const produtos = Array.from({ length: TOTAL_CAPAS }, (_, i) => ({
+        nome: tipo === "basica" ? "Caderneta Básica" : "Caderneta de Luxo",
+        preco: tipo === "basica" ? "R$ 35,00" : "R$ 40,00",
+        descricao: `MODELO DE CAPA - ${i + 1}`,
+        imagem: `${tipo}/${categoria}/CAPA-${i + 1}.webp`
+    }));
 
-    if (!productList) {
-        productList = document.createElement("div");
-        productList.id = "products";
-        document.body.appendChild(productList);
+    let div = document.getElementById("products");
+
+    if (!div) {
+        div = document.createElement("div");
+        div.id = "products";
+        document.body.appendChild(div);
     }
 
-    productList.innerHTML = products[tipo]
-        .map(produto => `
-            <div class="product">
-                <img src="${produto.imagem}" alt="${produto.nome}">
-                <h3>${produto.nome}</h3>
-                <p>${produto.descricao}</p>
-                <p><strong>${produto.preco}</strong></p>
-                <button onclick="selecionarProduto(
-                    '${produto.nome}',
-                    '${produto.preco}',
-                    '${produto.descricao}',
-                    '${produto.imagem}'
-                )">
-                    Selecionar
-                </button>
-            </div>
-        `)
-        .join("");
+    div.innerHTML = produtos.map(p => `
+        <div class="product">
+            <img 
+                src="${p.imagem}" 
+                alt="${p.nome}"
+                onerror="this.src='placeholder.webp'"
+            >
+            <h3>${p.nome}</h3>
+            <p>${p.descricao}</p>
+            <p><strong>${p.preco}</strong></p>
+            <button onclick="selecionarProduto(
+                '${p.nome}',
+                '${p.preco}',
+                '${p.descricao}',
+                '${p.imagem}'
+            )">
+                Selecionar
+            </button>
+        </div>
+    `).join("");
 }
 
-/* ===== CEP ===== */
-function buscarEndereco() {
-    const cepInput = document.getElementById("cep");
-    if (!cepInput) return;
 
+
+
+/* ================= PRODUTO (VAI PARA UPSELL) ================= */
+
+function selecionarProduto(nome, preco, descricao, imagem) {
+
+    localStorage.setItem("produtoSelecionado", JSON.stringify({
+        nome, preco, descricao, imagem
+    }));
+
+    localStorage.removeItem("cartaoSus");
+
+    window.location.href = "upsell-cartao.html";
+}
+
+/* ================= CEP + FRETE ================= */
+
+function buscarEndereco() {
+
+    const cepInput = document.getElementById("cep");
     const cep = cepInput.value.replace(/\D/g, "");
 
     if (cep.length !== 8) {
-        alert("CEP inválido! Digite um CEP com 8 dígitos.");
+        alert("CEP inválido");
         return;
     }
 
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
-        .then(response => response.json())
+        .then(r => r.json())
         .then(data => {
-    if (data.erro) {
-        alert("CEP não encontrado!");
-        return;
-    }
 
-    document.getElementById("rua").value = data.logradouro;
-    document.getElementById("bairro").value = data.bairro;
-    document.getElementById("cidade").value = data.localidade;
+            if (data.erro) {
+                alert("CEP não encontrado");
+                return;
+            }
 
-const bairro = data.bairro;
+            document.getElementById("rua").value = data.logradouro;
+            document.getElementById("bairro").value = data.bairro;
+            document.getElementById("cidade").value = data.localidade;
 
-if (FRETES_POR_BAIRRO.hasOwnProperty(bairro)) {
-    const frete = FRETES_POR_BAIRRO[bairro];
+            if (FRETES_POR_BAIRRO[data.bairro] === undefined) {
+                localStorage.removeItem("freteValor");
+                document.getElementById("frete").textContent =
+                    "❌ Não realizamos entregas para este bairro";
+                return;
+            }
 
-    localStorage.setItem("freteValor", frete);
+            const frete = FRETES_POR_BAIRRO[data.bairro];
+            localStorage.setItem("freteValor", frete);
 
-    const freteTexto = frete === 0
-        ? "🚚 Frete grátis"
-        : `🚚 Frete: R$ ${frete.toFixed(2)}`;
-
-    const freteEl = document.getElementById("frete");
-    if (freteEl) freteEl.textContent = freteTexto;
-} else {
-    localStorage.removeItem("freteValor");
-
-    alert("❌ Não realizamos entregas para este bairro.");
-
-    const freteEl = document.getElementById("frete");
-    if (freteEl) freteEl.textContent = "❌ Não realizamos entregas para este bairro";
+            document.getElementById("frete").textContent =
+                frete === 0
+                    ? "🚚 Frete grátis"
+                    : `🚚 Frete: R$ ${frete.toFixed(2)}`;
+        });
 }
 
-})
-}
+/* ================= ENDEREÇO ================= */
 
-/* ===== PRODUTO SELECIONADO ===== */
-function selecionarProduto(nome, preco, descricao, imagem) {
-    const produto = { nome, preco, descricao, imagem };
-    localStorage.setItem("produtoSelecionado", JSON.stringify(produto));
-    window.location.href = "cadastro.html";
-}
-
-/* ===== ENTREGA ===== */
-function calcularDataEntrega() {
-    let data = new Date();
-    let dias = 0;
-
-    while (dias < 3) {
-        data.setDate(data.getDate() + 1);
-        const diaSemana = data.getDay();
-        if (diaSemana !== 0 && diaSemana !== 6) {
-            dias++;
-        }
-    }
-
-    return `${String(data.getDate()).padStart(2, "0")}/${String(
-        data.getMonth() + 1
-    ).padStart(2, "0")}/${data.getFullYear()}`;
-}
-
-
-/* ===== SALVAR ENDEREÇO ===== */
 function salvarEndereco() {
-    const campos = ["cep", "rua", "numero", "bairro", "cidade", "referencia", "nome", "crianca"];
-    const frete = localStorage.getItem("freteValor");
 
-if (!frete) {
-    alert("Não realizamos entregas para este bairro.");
-    return;
-}
-
-    let valido = true;
-
-    campos.forEach(id => {
-        const input = document.getElementById(id);
-        if (!input || input.value.trim() === "") {
-            valido = false;
-            if (input) input.style.borderColor = "red";
-        } else {
-            input.style.borderColor = "";
-        }
-    });
-
-    if (!valido) {
-        alert("Por favor, preencha todos os campos corretamente.");
+    if (!localStorage.getItem("freteValor")) {
+        alert("Entrega indisponível para este bairro");
         return;
     }
 
@@ -302,115 +171,284 @@ if (!frete) {
     };
 
     localStorage.setItem("enderecoEntrega", JSON.stringify(endereco));
-
-    // redireciona se quiser
     window.location.href = "resumo.html";
 }
 
+function calcularDataEntrega() {
+    const d = new Date();
+    let dias = 0;
 
-document.addEventListener("DOMContentLoaded", function () {
-    if (document.getElementById("pedido")) {
-        exibirResumoPedido();
+    while (dias < 3) {
+        d.setDate(d.getDate() + 1);
+        if (d.getDay() !== 0 && d.getDay() !== 6) dias++;
     }
-});
+
+    return d.toLocaleDateString("pt-BR");
+}
+
+/* ================= RESUMO ================= */
+
 function exibirResumoPedido() {
+
     const pedidoDiv = document.getElementById("pedido");
     if (!pedidoDiv) return;
 
     const produto = JSON.parse(localStorage.getItem("produtoSelecionado"));
     const endereco = JSON.parse(localStorage.getItem("enderecoEntrega"));
+    const cartaoSus = JSON.parse(localStorage.getItem("cartaoSus"));
+    const frete = parseFloat(localStorage.getItem("freteValor") || 0);
 
     if (!produto || !endereco) {
         pedidoDiv.innerHTML = "<p>❌ Pedido incompleto.</p>";
         return;
     }
 
-    // converte preço do produto
     const precoProduto = parseFloat(
         produto.preco.replace("R$", "").replace(",", ".")
     );
 
-    // pega frete salvo
-    const frete = parseFloat(localStorage.getItem("freteValor") || 0);
-
-    // calcula total
-    const total = (precoProduto + frete).toFixed(2);
+    let total = precoProduto + frete;
+    if (cartaoSus?.incluso) total += cartaoSus.preco;
 
     pedidoDiv.innerHTML = `
-        <div class="pedido-produto">
-            <img src="${produto.imagem}" alt="${produto.nome}">
-            <h3>${produto.nome}</h3>
+<div class="pedido-comprovante">
+
+    <h2> Comprovante do Pedido</h2>
+
+    <div class="pedido-produtos">
+
+        <div class="pedido-item">
+            <img src="${produto.imagem}">
+            <p><strong>${produto.nome}</strong></p>
             <p>${produto.descricao}</p>
-            <p><strong>Produto:</strong> R$ ${precoProduto.toFixed(2)}</p>
-            <p><strong>Frete:</strong> R$ ${frete.toFixed(2)}</p>
-            <p style="font-size:18px; margin-top:10px;"><strong>Total:</strong> R$ ${total}</p>
+            <p>R$ ${precoProduto.toFixed(2)}</p>
         </div>
 
-        <div class="pedido-endereco">
-            <h3>📍 Endereço de Entrega</h3>
-            <p><strong>Seu nome:</strong> ${endereco.nome}</p>
-            <p><strong>Nome da Criança:</strong> ${endereco.crianca}</p>
-            <p><strong>Rua:</strong> ${endereco.rua}, ${endereco.numero}</p>
-            <p><strong>Bairro:</strong> ${endereco.bairro} – ${endereco.cidade}</p>
-            <p><strong>Ponto de Referência:</strong> ${endereco.referencia}</p>
-            <p><strong>Data da Entrega:</strong> ${endereco.dataEntrega}</p>
-        </div>
-    `;
+        ${
+            cartaoSus?.incluso
+            ? `
+            <div class="pedido-item">
+              <img src="${cartaoSus.imagem}"> 
+                <p><strong>🪪 Cartão do SUS</strong></p>
+                <p>Pacote promocional</p>
+                <p>R$ ${cartaoSus.preco.toFixed(2)}</p>
+            </div>
+            `
+            : ""
+        }
+
+    </div>
+
+    <div class="pedido-valores">
+        <p>🚚 Frete: R$ ${frete.toFixed(2)}</p>
+        <h3>💰 TOTAL DO PEDIDO: R$ ${total.toFixed(2)}</h3>
+    </div>
+
+    <div class="pedido-endereco">
+        <h3>📍 Endereço</h3>
+        <p>${endereco.nome}</p>
+        <p>${endereco.rua}, ${endereco.numero}</p>
+        <p>${endereco.bairro} – ${endereco.cidade}</p>
+        <p>📅 Entrega: ${endereco.dataEntrega}</p>
+    </div>
+
+</div>`;
 }
 
-const precoProduto = parseFloat(produto.preco.replace("R$", "").replace(",", "."));
-const total = (precoProduto + parseFloat(frete)).toFixed(2);
-
-
-/* ===== CONFIRMAR PEDIDO ===== */
+/* ================= WHATSAPP ================= */
 
 function confirmarPedido() {
-    const resumo = document.getElementById("pedido");
 
-    if (!resumo) {
-        alert("Resumo do pedido não encontrado.");
+    const produto = JSON.parse(localStorage.getItem("produtoSelecionado"));
+    const endereco = JSON.parse(localStorage.getItem("enderecoEntrega"));
+    const cartaoSus = JSON.parse(localStorage.getItem("cartaoSus"));
+    const frete = parseFloat(localStorage.getItem("freteValor") || 0);
+
+    if (!produto || !endereco) {
+        alert("Pedido incompleto");
         return;
     }
 
-    html2canvas(resumo, {
-        scale: 2,          // qualidade alta
-        backgroundColor: "#ffffff"
-    }).then(canvas => {
-        // converter em imagem
-        const imageData = canvas.toDataURL("image/png");
+    const preco = parseFloat(produto.preco.replace("R$", "").replace(",", "."));
+    let total = preco + frete;
+    if (cartaoSus?.incluso) total += cartaoSus.preco;
 
-        // criar download automático
-        const link = document.createElement("a");
-        link.href = imageData;
-        link.download = "resumo-pedido.png";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+    const texto = `
+🛍️ *NOVO PEDIDO*
 
-        // mensagem WhatsApp
-        const mensagem = `
-📸 A imagem do resumo foi gerada.
-👉 Por favor, anexe a imagem do pedido aqui na conversa para finalizar.
-        `.trim();
+📘 ${produto.nome}
+🖼️ ${produto.descricao}
+${cartaoSus?.incluso ? "🪪 Cartão do SUS incluso" : ""}
 
-        const telefone = "5574998066693"; // SEU NÚMERO
-        const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+🚚 Frete: R$ ${frete.toFixed(2)}
+💰 *TOTAL:* R$ ${total.toFixed(2)}
 
-        window.open(url, "_blank");
-    });
+👤 ${endereco.nome}
+📍 ${endereco.rua}, ${endereco.numero}
+    `.trim();
+
+    window.open(
+        `https://wa.me/5574998066693?text=${encodeURIComponent(texto)}`,
+        "_blank"
+    );
 }
 
+/* ================= DESISTIR ================= */
 
 function desistirCompra() {
-    const confirmar = confirm("Tem certeza que deseja desistir do pedido?");
-
-    if (!confirmar) return;
-
-    // limpa dados do pedido
-    localStorage.removeItem("produtoSelecionado");
-    localStorage.removeItem("enderecoEntrega");
-    localStorage.removeItem("freteValor");
-
-    // volta para a página inicial
+    if (!confirm("Deseja cancelar o pedido?")) return;
+    localStorage.clear();
     window.location.href = "index.html";
 }
+
+/* ================= CARTÃO DO SUS ================= */
+
+function selecionarCartao(imagemCartao) {
+    localStorage.setItem("cartaoSus", JSON.stringify({
+        incluso: true,
+        preco: PRECO_CARTAO_SUS_PROMO,
+        imagem: imagemCartao
+    }));
+
+    window.location.href = "cadastro.html";
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const notification = document.getElementById("notification");
+    const clientName = document.getElementById("client-name");
+    const testimonialText = document.getElementById("testimonial-text");
+    const clientPhoto = document.getElementById("client-photo");
+
+    if (!notification || !clientPhoto) return;
+
+    const notifications = [
+        
+  {
+    name: "Carlos A. Silva",
+    text: "Minha esposa adorou o presente, ficou perfeito",
+    photo: "testemonials/a.webp"
+  },
+  {
+    name: "Fernanda M. Rocha",
+    text: "Qualidade excelente, chegou rapidinho",
+    photo: "testemonials/b.webp"
+  },
+  {
+    name: "Kelly P. Andrade",
+    text: "Fiquei muito satisfeita com o resultado",
+    photo: "testemonials/c.webp"
+  },
+  {
+    name: "Fernanda Pacheco",
+    text: "Produto lindo, superou minhas expectativas",
+    photo: "testemonials/d.webp"
+  },
+  {
+    name: "Mariana S. Costa",
+    text: "Amei cada detalhe, recomendo demais",
+    photo: "testemonials/e.webp"
+  },
+  {
+    name: "Juliana Nogueira",
+    text: "Muito bem feito, dá pra ver o capricho",
+    photo: "testemonials/f.webp"
+  },
+  {
+    name: "Renata Oliveira",
+    text: "Com certeza comprarei novamente",
+    photo: "testemonials/g.webp"
+  },
+  {
+    name: "Patrícia Lima",
+    text: "Chegou antes do prazo e é maravilhoso",
+    photo: "testemonials/h.webp"
+  },
+  {
+    name: "Camila Ferreira",
+    text: "Simplesmente perfeito, amei",
+    photo: "testemonials/i.webp"
+  },
+  {
+    name: "Vanessa Albuquerque",
+    text: "Ótimo acabamento e material de qualidade",
+    photo: "testemonials/j.webp"
+  },
+  {
+    name: "Aline Barbosa",
+    text: "Atendimento excelente e produto impecável",
+    photo: "testemonials/k.webp"
+  },
+  {
+    name: "Bruna Monteiro",
+    text: "Vale muito a pena, fiquei encantada",
+    photo: "testemonials/l.webp"
+  },
+  {
+    name: "Tatiane R. Lopes",
+    text: "Presente perfeito, quem recebeu amou",
+    photo: "testemonials/m.webp"
+  },
+  {
+    name: "Daniela Farias",
+    text: "Trabalho muito bem feito, recomendo",
+    photo: "testemonials/n.webp"
+  },
+  {
+    name: "Luciana Menezes",
+    text: "Lindo demais, já quero outro",
+    photo: "testemonials/o.webp"
+  },
+  {
+    name: "Roberta Guedes",
+    text: "Tudo feito com muito cuidado e carinho",
+    photo: "testemonials/p.webp"
+  },
+  {
+    name: "Simone Teixeira",
+    text: "Experiência excelente do início ao fim",
+    photo: "testemonials/q.webp"
+  },
+  {
+    name: "Carolina P. Reis",
+    text: "Produto maravilhoso e atendimento rápido",
+    photo: "testemonials/r.webp"
+  },
+  {
+    name: "Érica Santos",
+    text: "Amei demais, super recomendo",
+    photo: "testemonials/s.webp"
+  },
+  {
+    name: "Paula Rodrigues",
+    text: "Muito bonito, dá pra ver o cuidado",
+    photo: "testemonials/t.webp"
+  }
+
+    ];
+
+    let index = 0;
+
+    function showNotification() {
+        const item = notifications[index];
+
+        clientName.textContent = item.name;
+        testimonialText.textContent = item.text;
+
+        // força atualização da imagem (evita cache)
+        clientPhoto.src = item.photo + "?t=" + Date.now();
+
+        notification.classList.add("show");
+
+        setTimeout(() => {
+            notification.classList.remove("show");
+        }, 4000);
+
+        index = (index + 1) % notifications.length;
+    }
+
+    setTimeout(() => {
+        showNotification();
+        setInterval(showNotification, 8000);
+    }, 3000);
+});

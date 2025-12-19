@@ -575,3 +575,99 @@ img {
         width: 180px;
     }
 }
+
+/* ===== COMPROVANTE DE PEDIDO ===== */
+.pedido-comprovante {
+    text-align: center;
+}
+
+.pedido-produtos {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.pedido-item {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 12px;
+    width: 220px;
+}
+
+.pedido-item img {
+    max-width: 180px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.pedido-valores {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.pedido-endereco {
+    margin-top: 25px;
+    font-size: 14px;
+    color: #444;
+}
+
+
+.upsell-texto {
+    text-align: center;
+    font-size: 16px;
+    margin: 15px 0;
+}
+
+.upsell-preco {
+    font-size: 36px;
+    font-weight: bold;
+    color: #28a745;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.contador {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #dc3545;
+    margin-bottom: 20px;
+}
+
+.cartao-sus-container {
+    width: 100%;
+    max-width: 320px;
+    margin: 30px auto;
+    padding: 12px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartao-sus-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* efeito hover (desktop) */
+.cartao-sus-container:hover img {
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.18);
+}
+
+/* responsivo */
+@media (max-width: 480px) {
+    .cartao-sus-container {
+        max-width: 90%;
+        padding: 10px;
+    }
+}
+
+

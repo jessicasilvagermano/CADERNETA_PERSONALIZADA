@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Oferta Especial</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-interna">
+
+<div class="container upsell">
+
+    <h1>🎁 Oferta Especial</h1>
+
+    <p class="upsell-texto">
+        Adicione o <strong>Cartão do SUS Personalizado</strong><br>
+        no mesmo tema da  <b>SUA</b>  caderneta por apenas:
+    </p>
+
+    <div class="upsell-preco">R$ 5,00</div>
+
+    <div class="cartao-sus-container">
+        <img src="cartão do sus para anuncio.jpg">
+    </div>
+
+    <div class="contador">
+        ⏳ Oferta válida por <span id="tempo">15:00</span>
+    </div>
+
+    <button id="btnAceitar" class="btn-confirmar" onclick="aceitarUpsell()">
+        ✅ SIM, QUERO ADICIONAR
+    </button>
+
+    <button class="btn-desistir" onclick="pularUpsell()">
+        ❌ NÃO, CONTINUAR SEM O CARTÃO
+    </button>
+
+    <p id="msgFim" style="display:none; color:#dc3545; font-weight:bold; margin-top:20px;">
+        ❌ Oferta encerrada. Continue sem o cartão.
+    </p>
+
+</div>
+
+<script>
+let tempo = 15 * 60; // 15 minutos em segundos
+
+const tempoEl = document.getElementById("tempo");
+const btnAceitar = document.getElementById("btnAceitar");
+const msgFim = document.getElementById("msgFim");
+
+function atualizarContador() {
+    const minutos = Math.floor(tempo / 60);
+    const segundos = tempo % 60;
+
+    tempoEl.textContent =
+        String(minutos).padStart(2, "0") + ":" +
+        String(segundos).padStart(2, "0");
+
+    if (tempo <= 0) {
+        clearInterval(timer);
+        btnAceitar.style.display = "none";
+        msgFim.style.display = "block";
+    }
+
+    tempo--;
+}
+
+const timer = setInterval(atualizarContador, 1000);
+
+function aceitarUpsell() {
+    window.location.href = "cartao-sus.html";
+}
+
+function pularUpsell() {
+    localStorage.removeItem("cartaoSus");
+    window.location.href = "cadastro.html";
+}
+</script>
+
+</body>
+</html>
